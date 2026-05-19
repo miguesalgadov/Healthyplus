@@ -1,0 +1,857 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Healthy+ | Orientación médica preventiva</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Poppins:wght@500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --blue-deep: #0E1B2D;
+      --blue-tech: #153E6E;
+      --green: #22C8A2;
+      --green-soft: #E6F7F1;
+      --white-premium: #F6F8FB;
+      --text: #263244;
+      --muted: #64748B;
+      --line: #E2E8F0;
+      --card: #FFFFFF;
+      --warning: #FFF7ED;
+      --warning-text: #9A3412;
+    }
+
+    * { box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      margin: 0;
+      font-family: 'Inter', sans-serif;
+      background: var(--white-premium);
+      color: var(--text);
+    }
+
+    h1, h2, h3, .brand, .btn, .eyebrow {
+      font-family: 'Poppins', sans-serif;
+    }
+
+    a { color: inherit; text-decoration: none; }
+
+    .container {
+      width: min(1180px, calc(100% - 40px));
+      margin: 0 auto;
+    }
+
+    .header {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      background: rgba(255,255,255,.86);
+      backdrop-filter: blur(18px);
+      border-bottom: 1px solid rgba(226,232,240,.85);
+    }
+
+    .nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 18px 0;
+    }
+
+    .logo-wrap {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .logo-mark {
+      width: 44px;
+      height: 44px;
+      border-radius: 16px;
+      background: linear-gradient(135deg, var(--blue-deep), var(--blue-tech));
+      color: white;
+      display: grid;
+      place-items: center;
+      font-weight: 800;
+      font-size: 20px;
+      box-shadow: 0 14px 35px rgba(14,27,45,.16);
+    }
+
+    .logo-mark span { color: var(--green); }
+
+    .brand {
+      font-size: 25px;
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      color: var(--blue-deep);
+    }
+
+    .brand span { color: var(--green); }
+
+    .menu {
+      display: flex;
+      align-items: center;
+      gap: 28px;
+      font-size: 14px;
+      color: var(--muted);
+      font-weight: 600;
+    }
+
+    .menu a:hover { color: var(--blue-deep); }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      border-radius: 999px;
+      padding: 14px 22px;
+      font-weight: 700;
+      border: 1px solid transparent;
+      transition: .2s ease;
+      cursor: pointer;
+      white-space: nowrap;
+    }
+
+    .btn-primary {
+      background: var(--green);
+      color: var(--blue-deep);
+      box-shadow: 0 14px 34px rgba(34,200,162,.28);
+    }
+
+    .btn-primary:hover { transform: translateY(-1px); box-shadow: 0 18px 40px rgba(34,200,162,.34); }
+
+    .btn-secondary {
+      background: white;
+      color: var(--blue-deep);
+      border-color: var(--line);
+    }
+
+    .btn-secondary:hover { border-color: var(--green); transform: translateY(-1px); }
+
+    .hero {
+      position: relative;
+      overflow: hidden;
+      background:
+        radial-gradient(circle at 14% 20%, rgba(34,200,162,.20), transparent 32%),
+        radial-gradient(circle at 85% 12%, rgba(21,62,110,.12), transparent 30%),
+        linear-gradient(180deg, #FFFFFF 0%, #F6F8FB 100%);
+      padding: 82px 0 64px;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.06fr .94fr;
+      gap: 56px;
+      align-items: center;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      padding: 9px 14px;
+      border-radius: 999px;
+      background: var(--green-soft);
+      color: #0F766E;
+      font-size: 13px;
+      font-weight: 700;
+      border: 1px solid rgba(34,200,162,.28);
+      margin-bottom: 24px;
+    }
+
+    .hero h1 {
+      margin: 0;
+      max-width: 760px;
+      color: var(--blue-deep);
+      font-size: clamp(42px, 6.2vw, 74px);
+      line-height: .98;
+      letter-spacing: -0.06em;
+      font-weight: 800;
+    }
+
+    .hero h1 .accent { color: var(--green); }
+
+    .lead {
+      margin: 24px 0 0;
+      max-width: 630px;
+      color: #475569;
+      font-size: 20px;
+      line-height: 1.65;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      margin-top: 34px;
+    }
+
+    .trust-row {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+      margin-top: 40px;
+      max-width: 660px;
+    }
+
+    .trust-item {
+      background: rgba(255,255,255,.78);
+      border: 1px solid var(--line);
+      border-radius: 22px;
+      padding: 18px;
+      box-shadow: 0 20px 50px rgba(14,27,45,.05);
+    }
+
+    .trust-item strong {
+      display: block;
+      color: var(--blue-deep);
+      font-size: 16px;
+      margin-bottom: 5px;
+    }
+
+    .trust-item span {
+      display: block;
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.45;
+    }
+
+    .visual-card {
+      position: relative;
+      min-height: 620px;
+    }
+
+    .doctor-card {
+      position: absolute;
+      top: 4px;
+      right: 0;
+      width: 92%;
+      height: 430px;
+      border-radius: 38px;
+      overflow: hidden;
+      background:
+        linear-gradient(135deg, rgba(14,27,45,.15), rgba(34,200,162,.16)),
+        url('https://images.unsplash.com/photo-1576765608535-5f04d1e3f289?auto=format&fit=crop&w=1200&q=80') center/cover;
+      box-shadow: 0 30px 90px rgba(14,27,45,.16);
+    }
+
+    .doctor-card::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, transparent 42%, rgba(14,27,45,.62));
+    }
+
+    .doctor-caption {
+      position: absolute;
+      left: 26px;
+      right: 26px;
+      bottom: 24px;
+      color: white;
+      z-index: 2;
+    }
+
+    .doctor-caption small {
+      color: rgba(255,255,255,.82);
+      font-weight: 600;
+    }
+
+    .doctor-caption h3 {
+      margin: 8px 0 0;
+      font-size: 28px;
+      line-height: 1.1;
+      letter-spacing: -0.04em;
+    }
+
+    .app-card {
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      width: 76%;
+      border-radius: 34px;
+      background: white;
+      border: 1px solid var(--line);
+      box-shadow: 0 28px 80px rgba(14,27,45,.16);
+      padding: 24px;
+    }
+
+    .phone-top {
+      display: flex;
+      justify-content: space-between;
+      gap: 14px;
+      align-items: center;
+      margin-bottom: 20px;
+    }
+
+    .status-pill {
+      border-radius: 999px;
+      background: var(--green-soft);
+      color: #0F766E;
+      padding: 8px 12px;
+      font-size: 12px;
+      font-weight: 800;
+    }
+
+    .app-title {
+      color: var(--blue-deep);
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      font-size: 22px;
+      line-height: 1.1;
+    }
+
+    .metric-list { display: grid; gap: 12px; }
+
+    .metric {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      padding: 14px;
+      border-radius: 20px;
+      background: #F8FAFC;
+      border: 1px solid #EEF2F7;
+    }
+
+    .metric-icon {
+      width: 42px;
+      height: 42px;
+      border-radius: 15px;
+      display: grid;
+      place-items: center;
+      background: var(--green-soft);
+    }
+
+    .metric strong { display: block; color: var(--blue-deep); }
+    .metric span { font-size: 13px; color: var(--muted); }
+
+    section { padding: 88px 0; }
+
+    .section-head {
+      max-width: 760px;
+      margin-bottom: 40px;
+    }
+
+    .center { text-align: center; margin-left: auto; margin-right: auto; }
+
+    .section-label {
+      color: #0F766E;
+      font-weight: 800;
+      font-size: 14px;
+      letter-spacing: .03em;
+      text-transform: uppercase;
+      margin-bottom: 12px;
+    }
+
+    h2 {
+      margin: 0;
+      color: var(--blue-deep);
+      font-size: clamp(32px, 4vw, 50px);
+      line-height: 1.06;
+      letter-spacing: -0.05em;
+    }
+
+    .section-copy {
+      margin: 18px 0 0;
+      color: var(--muted);
+      font-size: 18px;
+      line-height: 1.65;
+    }
+
+    .cards-3 {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 22px;
+    }
+
+    .cards-4 {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 20px;
+    }
+
+    .card {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: 30px;
+      padding: 28px;
+      box-shadow: 0 20px 60px rgba(14,27,45,.055);
+    }
+
+    .card:hover {
+      transform: translateY(-2px);
+      transition: .2s ease;
+      box-shadow: 0 25px 70px rgba(14,27,45,.075);
+    }
+
+    .icon {
+      width: 54px;
+      height: 54px;
+      border-radius: 18px;
+      display: grid;
+      place-items: center;
+      background: var(--green-soft);
+      color: var(--blue-deep);
+      font-size: 25px;
+      margin-bottom: 22px;
+    }
+
+    .card h3 {
+      margin: 0;
+      color: var(--blue-deep);
+      font-size: 22px;
+      line-height: 1.18;
+      letter-spacing: -0.03em;
+    }
+
+    .card p {
+      margin: 14px 0 0;
+      color: var(--muted);
+      line-height: 1.6;
+    }
+
+    .process {
+      background: white;
+      border-top: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .step {
+      position: relative;
+      min-height: 265px;
+    }
+
+    .step-number {
+      display: inline-flex;
+      width: 42px;
+      height: 42px;
+      align-items: center;
+      justify-content: center;
+      border-radius: 999px;
+      background: var(--blue-deep);
+      color: white;
+      font-weight: 800;
+      margin-bottom: 18px;
+    }
+
+    .plans {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 22px;
+      align-items: stretch;
+    }
+
+    .plan {
+      position: relative;
+      background: white;
+      border: 1px solid var(--line);
+      border-radius: 34px;
+      padding: 32px;
+      box-shadow: 0 20px 65px rgba(14,27,45,.06);
+    }
+
+    .plan.featured {
+      border: 2px solid rgba(34,200,162,.72);
+      background: linear-gradient(180deg, #FFFFFF, #F1FFFA);
+      transform: translateY(-10px);
+    }
+
+    .tag {
+      display: inline-flex;
+      border-radius: 999px;
+      background: var(--blue-deep);
+      color: white;
+      padding: 8px 12px;
+      font-weight: 800;
+      font-size: 12px;
+      margin-bottom: 18px;
+    }
+
+    .plan h3 { font-size: 26px; margin: 0; color: var(--blue-deep); }
+    .price { margin-top: 15px; color: var(--blue-deep); font-size: 36px; font-weight: 800; letter-spacing: -0.05em; }
+    .price small { color: var(--muted); font-size: 15px; font-weight: 600; letter-spacing: 0; }
+    .plan-desc { color: var(--muted); margin: 12px 0 24px; line-height: 1.55; }
+
+    .features { list-style: none; padding: 0; margin: 0; display: grid; gap: 13px; }
+    .features li { display: flex; gap: 10px; color: #334155; line-height: 1.45; }
+    .features li::before { content: '✓'; color: #0F766E; font-weight: 900; }
+
+    .warning-box {
+      background: var(--warning);
+      color: var(--warning-text);
+      border: 1px solid #FED7AA;
+      border-radius: 28px;
+      padding: 26px;
+      margin-top: 34px;
+      line-height: 1.6;
+    }
+
+    .two-col {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 34px;
+      align-items: center;
+    }
+
+    .dark-band {
+      background: var(--blue-deep);
+      color: white;
+      border-radius: 40px;
+      padding: 56px;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .dark-band::before {
+      content: '';
+      position: absolute;
+      width: 420px;
+      height: 420px;
+      border-radius: 999px;
+      background: rgba(34,200,162,.16);
+      right: -140px;
+      top: -150px;
+    }
+
+    .dark-band h2 { color: white; position: relative; }
+    .dark-band p { color: rgba(255,255,255,.78); position: relative; }
+    .dark-band .btn { position: relative; }
+
+    .audience-list { display: grid; gap: 15px; }
+    .audience-item {
+      display: flex;
+      gap: 14px;
+      align-items: flex-start;
+      background: white;
+      border: 1px solid var(--line);
+      border-radius: 24px;
+      padding: 20px;
+      box-shadow: 0 20px 60px rgba(14,27,45,.045);
+    }
+
+    .check {
+      width: 28px;
+      height: 28px;
+      border-radius: 999px;
+      background: var(--green-soft);
+      color: #0F766E;
+      display: grid;
+      place-items: center;
+      font-weight: 900;
+      flex: 0 0 auto;
+    }
+
+    .audience-item strong { color: var(--blue-deep); display: block; margin-bottom: 4px; }
+    .audience-item span { color: var(--muted); line-height: 1.5; }
+
+    .footer {
+      background: var(--blue-deep);
+      color: white;
+      padding: 46px 0;
+    }
+
+    .footer-grid {
+      display: flex;
+      justify-content: space-between;
+      gap: 28px;
+      align-items: center;
+      color: rgba(255,255,255,.68);
+    }
+
+    .footer .brand { color: white; }
+
+    @media (max-width: 980px) {
+      .menu { display: none; }
+      .hero-grid, .two-col { grid-template-columns: 1fr; }
+      .visual-card { min-height: 560px; }
+      .doctor-card { width: 100%; }
+      .app-card { width: 84%; }
+      .cards-3, .cards-4, .plans { grid-template-columns: 1fr; }
+      .plan.featured { transform: none; }
+      .trust-row { grid-template-columns: 1fr; }
+      .dark-band { padding: 36px 24px; border-radius: 30px; }
+    }
+
+    @media (max-width: 620px) {
+      .container { width: min(100% - 28px, 1180px); }
+      .nav { gap: 16px; }
+      .header .btn { display: none; }
+      .hero { padding: 58px 0 44px; }
+      .lead { font-size: 18px; }
+      .hero-actions { flex-direction: column; }
+      .btn { width: 100%; }
+      .visual-card { min-height: 520px; }
+      .doctor-card { height: 360px; border-radius: 28px; }
+      .app-card { width: 94%; padding: 18px; border-radius: 28px; }
+      section { padding: 66px 0; }
+      .card, .plan { padding: 24px; border-radius: 26px; }
+      .footer-grid { flex-direction: column; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+  <header class="header">
+    <div class="container nav">
+      <a href="#" class="logo-wrap" aria-label="Healthy+ inicio">
+        <div class="logo-mark">H<span>+</span></div>
+        <div class="brand">Healthy<span>+</span></div>
+      </a>
+      <nav class="menu" aria-label="Navegación principal">
+        <a href="#servicio">Servicio</a>
+        <a href="#como-funciona">Cómo funciona</a>
+        <a href="#planes">Planes</a>
+        <a href="#alcance">Alcance</a>
+      </nav>
+      <a class="btn btn-primary" href="#contacto">Subir exámenes</a>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="container hero-grid">
+        <div>
+          <div class="eyebrow">✦ Orientación médica preventiva</div>
+          <h1>Entiende tus exámenes. <span class="accent">Cuida tu salud.</span></h1>
+          <p class="lead">
+            Healthy+ te ayuda a revisar tus exámenes, entender resultados alterados y recibir una guía médica clara sobre próximos pasos, controles preventivos y señales de alerta.
+          </p>
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="#contacto">Quiero revisar mis exámenes →</a>
+            <a class="btn btn-secondary" href="#como-funciona">Ver cómo funciona</a>
+          </div>
+          <div class="trust-row">
+            <div class="trust-item">
+              <strong>Lenguaje simple</strong>
+              <span>Te explicamos lo relevante sin tecnicismos innecesarios.</span>
+            </div>
+            <div class="trust-item">
+              <strong>Enfoque preventivo</strong>
+              <span>Orientación para controlar, consultar o hacer seguimiento.</span>
+            </div>
+            <div class="trust-item">
+              <strong>100% digital</strong>
+              <span>Subes tus documentos y recibes orientación online.</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="visual-card" aria-label="Visual Healthy+">
+          <div class="doctor-card">
+            <div class="doctor-caption">
+              <small>Consejería médica online</small>
+              <h3>Una guía clara para tomar mejores decisiones.</h3>
+            </div>
+          </div>
+          <div class="app-card">
+            <div class="phone-top">
+              <div class="app-title">Informe Healthy<span style="color:var(--green)">+</span></div>
+              <div class="status-pill">Listo</div>
+            </div>
+            <div class="metric-list">
+              <div class="metric">
+                <div class="metric-icon">🧪</div>
+                <div><strong>Exámenes revisados</strong><span>Hemograma, perfil lipídico, glicemia</span></div>
+              </div>
+              <div class="metric">
+                <div class="metric-icon">📌</div>
+                <div><strong>Hallazgos destacados</strong><span>Resultados fuera de rango explicados</span></div>
+              </div>
+              <div class="metric">
+                <div class="metric-icon">🗓️</div>
+                <div><strong>Próximos pasos</strong><span>Control, seguimiento o derivación sugerida</span></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="servicio">
+      <div class="container">
+        <div class="section-head center">
+          <div class="section-label">Qué hacemos</div>
+          <h2>Orientación médica para entender lo que dicen tus exámenes.</h2>
+          <p class="section-copy">
+            No buscamos reemplazar una consulta médica completa. Nuestro foco es ayudarte a ordenar la información, comprender resultados y saber cuándo corresponde consultar presencialmente o realizar nuevos controles.
+          </p>
+        </div>
+        <div class="cards-3">
+          <article class="card">
+            <div class="icon">🧪</div>
+            <h3>Revisión de exámenes</h3>
+            <p>Analizamos los resultados que subes y destacamos lo normal, lo alterado y lo que requiere seguimiento.</p>
+          </article>
+          <article class="card">
+            <div class="icon">💬</div>
+            <h3>Consejería médica</h3>
+            <p>Recibes una explicación clara y general, orientada a prevención, hábitos, controles y próximos pasos.</p>
+          </article>
+          <article class="card">
+            <div class="icon">⚠️</div>
+            <h3>Señales de alerta</h3>
+            <p>Te indicamos cuándo un resultado o síntoma debe ser evaluado por consulta médica o urgencia.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="process" id="como-funciona">
+      <div class="container">
+        <div class="section-head center">
+          <div class="section-label">Cómo funciona</div>
+          <h2>Un proceso simple, digital y acompañado.</h2>
+          <p class="section-copy">Healthy+ transforma un PDF difícil de entender en una orientación clara para ti o tu familia.</p>
+        </div>
+        <div class="cards-4">
+          <article class="card step">
+            <div class="step-number">1</div>
+            <h3>Subes tus exámenes</h3>
+            <p>Adjuntas PDF, foto o documento y completas una ficha breve con edad, antecedentes y motivo de revisión.</p>
+          </article>
+          <article class="card step">
+            <div class="step-number">2</div>
+            <h3>Validamos el alcance</h3>
+            <p>Revisamos si corresponde orientación preventiva o si por seguridad debes acudir a consulta presencial o urgencia.</p>
+          </article>
+          <article class="card step">
+            <div class="step-number">3</div>
+            <h3>Recibes orientación</h3>
+            <p>Un profesional médico prepara una guía clara con resultados relevantes, explicación general y próximos pasos.</p>
+          </article>
+          <article class="card step">
+            <div class="step-number">4</div>
+            <h3>Haces seguimiento</h3>
+            <p>Te ayudamos a recordar controles, repetir exámenes y mantener tu historial preventivo ordenado.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="container two-col">
+        <div>
+          <div class="section-label">Para quién es</div>
+          <h2>Ideal para personas y familias que quieren mayor claridad.</h2>
+          <p class="section-copy">
+            Healthy+ es especialmente útil cuando tienes exámenes en la mano, pero necesitas entender qué significan y qué deberías hacer después.
+          </p>
+        </div>
+        <div class="audience-list">
+          <div class="audience-item"><div class="check">✓</div><div><strong>Adultos con controles preventivos</strong><span>Para revisar exámenes anuales, chequeos generales y factores de riesgo.</span></div></div>
+          <div class="audience-item"><div class="check">✓</div><div><strong>Hijos que cuidan a sus padres</strong><span>Para entender exámenes de adultos mayores y organizar próximos controles.</span></div></div>
+          <div class="audience-item"><div class="check">✓</div><div><strong>Pacientes crónicos estables</strong><span>Para acompañar controles de glicemia, colesterol, función renal, presión u otros indicadores.</span></div></div>
+          <div class="audience-item"><div class="check">✓</div><div><strong>Empresas y equipos</strong><span>Como beneficio preventivo para colaboradores y sus familias.</span></div></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="planes">
+      <div class="container">
+        <div class="section-head center">
+          <div class="section-label">Planes</div>
+          <h2>Elige el nivel de acompañamiento que necesitas.</h2>
+          <p class="section-copy">Puedes partir con una revisión puntual o activar un plan mensual para mantener tu salud preventiva bajo control.</p>
+        </div>
+        <div class="plans">
+          <article class="plan">
+            <h3>Revisión Simple</h3>
+            <div class="price">$14.990 <small>/ revisión</small></div>
+            <p class="plan-desc">Para revisar un set básico de exámenes y recibir una explicación simple.</p>
+            <ul class="features">
+              <li>Revisión de exámenes enviados</li>
+              <li>Resumen de resultados normales y alterados</li>
+              <li>Orientación general de próximos pasos</li>
+              <li>Entrega digital del informe</li>
+            </ul>
+          </article>
+          <article class="plan featured">
+            <div class="tag">Más recomendado</div>
+            <h3>Healthy+ Preventive</h3>
+            <div class="price">$29.990 <small>/ mes</small></div>
+            <p class="plan-desc">Para personas que quieren seguimiento preventivo mensual y claridad continua.</p>
+            <ul class="features">
+              <li>1 revisión mensual de exámenes</li>
+              <li>Informe orientativo en lenguaje simple</li>
+              <li>Calendario de controles preventivos</li>
+              <li>Recordatorios y seguimiento digital</li>
+              <li>Canal de orientación acotada</li>
+            </ul>
+          </article>
+          <article class="plan">
+            <h3>Healthy+ Family</h3>
+            <div class="price">$69.990 <small>/ mes</small></div>
+            <p class="plan-desc">Para familias que quieren acompañar la salud de padres o integrantes del hogar.</p>
+            <ul class="features">
+              <li>Hasta 3 integrantes</li>
+              <li>Revisión mensual familiar</li>
+              <li>Reporte para familiar responsable</li>
+              <li>Seguimiento de controles y medicamentos declarados</li>
+              <li>Orientación sobre señales de alerta</li>
+            </ul>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="alcance">
+      <div class="container">
+        <div class="dark-band">
+          <div class="section-label" style="color: var(--green);">Alcance del servicio</div>
+          <h2>Orientación médica, no urgencia ni diagnóstico definitivo.</h2>
+          <p class="section-copy">
+            Healthy+ entrega teleorientación y consejería médica preventiva basada en la información que proporciona el usuario. El servicio ayuda a comprender resultados y orientar próximos pasos, pero no reemplaza una consulta médica presencial o teleconsulta formal cuando esta sea necesaria.
+          </p>
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="#contacto">Comenzar revisión</a>
+            <a class="btn btn-secondary" href="#servicio">Conocer el servicio</a>
+          </div>
+        </div>
+        <div class="warning-box">
+          <strong>Importante:</strong> Healthy+ no está destinado a emergencias médicas, no constituye diagnóstico definitivo ni tratamiento, y no reemplaza la evaluación clínica completa. Ante dolor intenso, dificultad respiratoria, pérdida de conciencia, signos neurológicos, sangrado importante u otros síntomas graves, se debe acudir a un servicio de urgencia.
+        </div>
+      </div>
+    </section>
+
+    <section id="contacto">
+      <div class="container two-col">
+        <div>
+          <div class="section-label">Comienza ahora</div>
+          <h2>Sube tus exámenes y recibe una orientación clara.</h2>
+          <p class="section-copy">
+            Diseñemos una experiencia simple: el paciente sube sus documentos, responde una ficha breve y Healthy+ entrega una guía médica preventiva para tomar mejores decisiones.
+          </p>
+        </div>
+        <div class="card">
+          <h3>Solicitar revisión</h3>
+          <p>Déjanos tus datos y te contactaremos para iniciar el proceso de revisión de exámenes.</p>
+          <form style="display:grid; gap:14px; margin-top:22px;">
+            <input placeholder="Nombre" style="padding:15px 16px;border:1px solid var(--line);border-radius:16px;font:inherit;" />
+            <input placeholder="Correo" style="padding:15px 16px;border:1px solid var(--line);border-radius:16px;font:inherit;" />
+            <input placeholder="WhatsApp" style="padding:15px 16px;border:1px solid var(--line);border-radius:16px;font:inherit;" />
+            <select style="padding:15px 16px;border:1px solid var(--line);border-radius:16px;font:inherit;color:#64748B;">
+              <option>Quiero revisar mis exámenes</option>
+              <option>Quiero un plan mensual</option>
+              <option>Quiero cuidar a un familiar</option>
+              <option>Quiero información para empresa</option>
+            </select>
+            <button class="btn btn-primary" type="button">Enviar solicitud →</button>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer-grid">
+      <div class="logo-wrap">
+        <div class="logo-mark" style="box-shadow:none;background:rgba(255,255,255,.12);">H<span>+</span></div>
+        <div class="brand">Healthy<span>+</span></div>
+      </div>
+      <div>Orientación médica preventiva.</div>
+      <div>La salud que llega a ti.</div>
+    </div>
+  </footer>
+</body>
+</html>
